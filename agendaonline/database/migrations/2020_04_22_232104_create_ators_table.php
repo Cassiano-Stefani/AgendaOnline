@@ -17,8 +17,8 @@ class CreateAtorsTable extends Migration
             $table->id();
             $table->string('nome', 100);
             $table->date('dt_nascimento');
-            $table->integer('num_premiacoes');
-            $table->longText('dados_extra');
+            $table->integer('num_premiacoes')->nullable();
+            $table->longText('dados_extra')->nullable();
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class CreateLivrosTable extends Migration
         Schema::create('livros', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 100);
-            $table->string('genero')->nullable();
+            $table->string('genero', 100)->nullable();
             $table->integer('escritor_id')->unsigned()->nullable();
             $table->foreign('escritor_id')->references('id')->on('escritores');
             $table->integer('pagina_parada')->nullable();

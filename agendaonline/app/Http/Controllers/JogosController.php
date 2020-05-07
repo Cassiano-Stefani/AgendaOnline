@@ -9,7 +9,7 @@ use App\Http\Requests\JogoRequest;
 class JogosController extends Controller
 {
     public function index() {
-		$jogos = Jogo::All();
+		$jogos = Jogo::orderBy('nome')->paginate(8);
 		return view('jogos.index', ['jogos'=>$jogos]);
 	}
 

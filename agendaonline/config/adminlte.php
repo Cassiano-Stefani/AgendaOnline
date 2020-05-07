@@ -208,17 +208,26 @@ return [
     */
 
     'menu' => [
-        ['header' => 'Atores'],
+        ['header' => 'Tópicos'],
         [
-            'text' => 'Listagem',
+            'text' => 'Atores',
             'url'  => 'atores',
             'icon' => 'fas fa-fw fa-users',
         ],
-        ['header' => 'Jogos'],
         [
-            'text' => 'Listagem',
+            'text' => 'Jogos',
             'url'  => 'jogos',
             'icon' => 'fas fa-fw fa-gamepad',
+        ],
+        [
+            'text' => 'Escritores',
+            'url'  => 'escritores',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
+            'text' => 'Livros',
+            'url'  => 'livros',
+            'icon' => 'fas fa-fw fa-book',
         ],
         // [
         //     'text' => 'search',

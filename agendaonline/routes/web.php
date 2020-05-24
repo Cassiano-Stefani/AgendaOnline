@@ -38,6 +38,24 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put ('{id}/update',  ['as'=>'livros.update',  'uses'=>'LivrosController@update' ]);
         Route::post('store',        ['as'=>'livros.store',   'uses'=>'LivrosController@store'  ]);
     });
+
+    Route::group(['prefix'=>'filmes', 'where'=>['id'=>'[0-9]+']], function () {
+        Route::get ('',             ['as'=>'filmes',         'uses'=>'FilmesController@index'  ]);
+        Route::get ('create',       ['as'=>'filmes.create',  'uses'=>'FilmesController@create' ]);
+        Route::get ('{id}/destroy', ['as'=>'filmes.destroy', 'uses'=>'FilmesController@destroy']);
+        Route::get ('{id}/edit',    ['as'=>'filmes.edit',    'uses'=>'FilmesController@edit'   ]);
+        Route::put ('{id}/update',  ['as'=>'filmes.update',  'uses'=>'FilmesController@update' ]);
+        Route::post('store',        ['as'=>'filmes.store',   'uses'=>'FilmesController@store'  ]);
+    });
+
+    Route::group(['prefix'=>'series', 'where'=>['id'=>'[0-9]+']], function () {
+        Route::get ('',             ['as'=>'series',         'uses'=>'SeriesController@index'  ]);
+        Route::get ('create',       ['as'=>'series.create',  'uses'=>'SeriesController@create' ]);
+        Route::get ('{id}/destroy', ['as'=>'series.destroy', 'uses'=>'SeriesController@destroy']);
+        Route::get ('{id}/edit',    ['as'=>'series.edit',    'uses'=>'SeriesController@edit'   ]);
+        Route::put ('{id}/update',  ['as'=>'series.update',  'uses'=>'SeriesController@update' ]);
+        Route::post('store',        ['as'=>'series.store',   'uses'=>'SeriesController@store'  ]);
+    });
 });
 
 Route::get('/', function () {

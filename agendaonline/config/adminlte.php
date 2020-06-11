@@ -229,6 +229,16 @@ return [
             'url'  => 'livros',
             'icon' => 'fas fa-fw fa-book',
         ],
+        [
+            'text' => 'Filmes',
+            'url'  => 'filmes',
+            'icon' => 'fas fa-fw fa-film',
+        ],
+        [
+            'text' => 'Séries',
+            'url'  => 'series',
+            'icon' => 'fas fa-fw fa-film',
+        ],
         // [
         //     'text' => 'search',
         //     'search' => true,

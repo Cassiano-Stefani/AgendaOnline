@@ -15,6 +15,7 @@ class CreateEscritorsTable extends Migration
     {
         Schema::create('escritores', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->string('nome', 100);
             $table->longText('dados_extra')->nullable();
             $table->timestamps();

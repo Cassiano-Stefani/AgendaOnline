@@ -15,8 +15,9 @@ class CreateAtorsTable extends Migration
     {
         Schema::create('atores', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->string('nome', 100);
-            $table->date('dt_nascimento');
+            $table->date('dt_nascimento')->nullable();
             $table->integer('num_premiacoes')->nullable();
             $table->longText('dados_extra')->nullable();
             $table->timestamps();

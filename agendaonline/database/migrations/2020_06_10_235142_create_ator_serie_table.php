@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAtorFilmeSerie extends Migration
+class CreateAtorSerieTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreateAtorFilmeSerie extends Migration
     {
         Schema::create('ator_serie', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('ator_id')->unsigned();
+            $table->bigInteger('ator_id')->unsigned()->nullable();
             $table->bigInteger('serie_id')->unsigned();
             $table->timestamps();
         });

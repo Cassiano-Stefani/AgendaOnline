@@ -16,4 +16,8 @@ class Ator extends Model
     public function series() {
         return $this->belongsToMany(Serie::class);
     }
+
+    public function users() {
+        return $this->belongsTo('App\User');
+    }
 }

@@ -15,6 +15,7 @@ class CreateJogosTable extends Migration
     {
         Schema::create('jogos', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->string('nome', 100);
             $table->date('ano_lancamento')->nullable();
             $table->string('genero')->nullable();

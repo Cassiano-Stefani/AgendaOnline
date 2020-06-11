@@ -19,17 +19,17 @@
 
         <div class="form-group">
             {!! Form::label('dt_nascimento', 'Data de Nascimento:') !!}
-            {!! Form::date('dt_nascimento', $ator->dt_nascimento, ['class'=>'form-control', 'required']) !!}
+            {!! Form::date('dt_nascimento', $ator->dt_nascimento, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
             {!! Form::label('num_premiacoes', 'Número de premiações:') !!}
-            {!! Form::number('num_premiacoes', $ator->num_premiacoes, ['class'=>'form-control', 'required']) !!}
+            {!! Form::number('num_premiacoes', $ator->num_premiacoes, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
             {!! Form::label('dados_extra', 'Observações:') !!}
-            {!! Form::textarea('dados_extra', $ator->dados_extra, ['class'=>'form-control', 'required']) !!}
+            {!! Form::textarea('dados_extra', $ator->dados_extra, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">

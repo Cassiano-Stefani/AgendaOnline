@@ -19,22 +19,22 @@
 
         <div class="form-group">
             {!! Form::label('ano_lancamento', 'Ano de Lançamento:') !!}
-            {!! Form::date('ano_lancamento', $jogo->ano_lancamento, ['class'=>'form-control', 'required']) !!}
+            {!! Form::date('ano_lancamento', $jogo->ano_lancamento, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
             {!! Form::label('genero', 'Gênero:') !!}
-            {!! Form::text('genero', $jogo->genero, ['class'=>'form-control', 'required']) !!}
+            {!! Form::text('genero', $jogo->genero, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
-            {!! Form::label('completado', 'Porcentagem Completa:') !!}
-            {!! Form::number('completado', $jogo->completado, ['class'=>'form-control', 'required']) !!}
+            {!! Form::label('completado', 'Progresso (%):') !!}
+            {!! Form::number('completado', $jogo->completado, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
             {!! Form::label('dados_extra', 'Observações:') !!}
-            {!! Form::textarea('dados_extra', $jogo->dados_extra, ['class'=>'form-control', 'required']) !!}
+            {!! Form::textarea('dados_extra', $jogo->dados_extra, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">

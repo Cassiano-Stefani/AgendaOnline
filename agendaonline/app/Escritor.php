@@ -12,4 +12,8 @@ class Escritor extends Model
     public function livros() {
         return $this->hasMany("App\Livro");
     }
+
+    public function users() {
+        return $this->belongsTo('App\User');
+    }
 }

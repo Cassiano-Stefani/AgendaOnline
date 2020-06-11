@@ -25,7 +25,6 @@ class AtorRequest extends FormRequest
     {
         return [
             'nome' => 'required',
-            'dt_nascimento' => 'date',
         ];
     }
 }

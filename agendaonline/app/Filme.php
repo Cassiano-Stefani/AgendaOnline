@@ -12,4 +12,8 @@ class Filme extends Model
     public function atores() {
         return $this->belongsToMany(Ator::class);
     }
+
+    public function users() {
+        return $this->belongsTo('App\User');
+    }
 }

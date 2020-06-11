@@ -15,13 +15,13 @@ class CreateSeriesTable extends Migration
     {
         Schema::create('series', function (Blueprint $table) {
             $table->id();
-            $table->string('nome', 100)->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->string('nome', 100);
             $table->string('genero')->nullable();
             $table->float('imdb', 8, 2)->nullable(); // deve ser buscado de api de terceiros
             $table->integer('episodio_parado')->nullable();
             $table->integer('temporada_parada')->nullable();
             $table->longText('dados_extra')->nullable();
-            // elenco eh N pra N, tabela AtorSerie
             $table->timestamps();
         });
     }

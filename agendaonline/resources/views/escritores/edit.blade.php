@@ -19,7 +19,7 @@
 
         <div class="form-group">
             {!! Form::label('dados_extra', 'Observações:') !!}
-            {!! Form::textarea('dados_extra', $escritor->dados_extra, ['class'=>'form-control', 'required']) !!}
+            {!! Form::textarea('dados_extra', $escritor->dados_extra, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">

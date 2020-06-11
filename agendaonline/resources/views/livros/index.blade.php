@@ -5,22 +5,18 @@
     <table class="table table-stripe table-bordered table-hover">
         <thead>
             <th>Título</th>
-            <th>Gênero</th>
-            <th>Escritor</th>
             <th>Ações</th>
         </thead>
         <tbody>
             @foreach($livros as $livro)
                 <tr>
                     <td>{{ $livro->nome }} </td>
-                    <td>{{ $livro->genero }} </td>
-                    <td>{{ $livro->escritor->nome }} </td>
                     <td>
                         <a href="{{ route('livros.edit', ['id'=>$livro->id]) }}"    class="btn-sm btn-success">Editar</a>
                         <a href="#" onclick="return ConfirmaExclusao({{ $livro->id }})" class="btn-sm btn-danger">Remover</a>
                     </td>
                 </tr>
-        @endforeach
+            @endforeach
         </tbody>
     </table>
 

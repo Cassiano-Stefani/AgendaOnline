@@ -25,8 +25,6 @@ class JogoRequest extends FormRequest
     {
         return [
             'nome' => 'required',
-            'ano_lancamento' => 'date',
-            'genero' => 'required',
         ];
     }
 }

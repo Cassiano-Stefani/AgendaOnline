@@ -19,24 +19,24 @@
 
         <div class="form-group">
             {!! Form::label('genero', 'Gênero:') !!}
-            {!! Form::text('genero', $livro->genero, ['class'=>'form-control', 'required']) !!}
+            {!! Form::text('genero', $livro->genero, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
             {!! Form::label('escritor_id', 'Escritor:') !!}
             {!! Form::select('escritor_id',
                             \App\Escritor::orderBy('nome')->pluck('nome', 'id')->toArray(),
-                            $livro->escritor_id, ['class'=>'form-control', 'required']) !!}
+                            $livro->escritor_id, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
             {!! Form::label('pagina_parada', 'Página parada:') !!}
-            {!! Form::number('pagina_parada', $livro->pagina_parada, ['class'=>'form-control', 'required']) !!}
+            {!! Form::number('pagina_parada', $livro->pagina_parada, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
             {!! Form::label('dados_extra', 'Observações:') !!}
-            {!! Form::textarea('dados_extra', $livro->dados_extra, ['class'=>'form-control', 'required']) !!}
+            {!! Form::textarea('dados_extra', $livro->dados_extra, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">

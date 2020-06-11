@@ -19,22 +19,22 @@
 
         <div class="form-group">
             {!! Form::label('ano_lancamento', 'Ano de Lançamento:') !!}
-            {!! Form::date('ano_lancamento', null, ['class'=>'form-control', 'required']) !!}
+            {!! Form::date('ano_lancamento', null, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
             {!! Form::label('genero', 'Gênero:') !!}
-            {!! Form::text('genero', null, ['class'=>'form-control', 'required']) !!}
+            {!! Form::text('genero', null, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
-            {!! Form::label('completado', 'Porcentagem Completa:') !!}
-            {!! Form::number('completado', null, ['class'=>'form-control', 'required']) !!}
+            {!! Form::label('completado', 'Progresso (%):') !!}
+            {!! Form::number('completado', null, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
             {!! Form::label('dados_extra', 'Observações:') !!}
-            {!! Form::textarea('dados_extra', null, ['class'=>'form-control', 'required']) !!}
+            {!! Form::textarea('dados_extra', null, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">

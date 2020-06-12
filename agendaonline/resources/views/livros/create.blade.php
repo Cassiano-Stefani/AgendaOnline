@@ -25,13 +25,13 @@
         <div class="form-group">
             {!! Form::label('escritor_id', 'Escritor:') !!}
             {!! Form::select('escritor_id',
-                             \App\Escritor::orderBy('nome')->pluck('nome', 'id')->toArray(),
+                             \App\Escritor::where('user_id', auth()->user()->id)->orderBy('nome')->pluck('nome', 'id')->toArray(),
                              null, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
-            {!! Form::label('pagina_parada', 'Página parada:') !!}
-            {!! Form::number('pagina_parada', null, ['class'=>'form-control']) !!}
+            {!! Form::label('pagina_parada', 'Progresso:') !!}
+            {!! Form::text('pagina_parada', null, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">

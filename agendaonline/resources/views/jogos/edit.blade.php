@@ -28,8 +28,8 @@
         </div>
 
         <div class="form-group">
-            {!! Form::label('completado', 'Progresso (%):') !!}
-            {!! Form::number('completado', $jogo->completado, ['class'=>'form-control']) !!}
+            {!! Form::label('completado', 'Progresso:') !!}
+            {!! Form::text('completado', $jogo->completado, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">

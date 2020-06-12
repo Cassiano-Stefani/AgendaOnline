@@ -18,16 +18,6 @@
         </div>
 
         <div class="form-group">
-            {!! Form::label('dt_nascimento', 'Data de Nascimento:') !!}
-            {!! Form::date('dt_nascimento', null, ['class'=>'form-control']) !!}
-        </div>
-
-        <div class="form-group">
-            {!! Form::label('num_premiacoes', 'Número de premiações:') !!}
-            {!! Form::number('num_premiacoes', null, ['class'=>'form-control']) !!}
-        </div>
-
-        <div class="form-group">
             {!! Form::label('dados_extra', 'Observações:') !!}
             {!! Form::textarea('dados_extra', null, ['class'=>'form-control']) !!}
         </div>

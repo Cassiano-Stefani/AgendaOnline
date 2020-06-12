@@ -9,7 +9,7 @@ use App\Http\Requests\EscritorRequest;
 class EscritoresController extends Controller
 {
     public function index() {
-		$escritores = Escritor::orderBy('nome')->paginate(8);
+		$escritores = Escritor::where('user_id', auth()->user()->id)->orderBy('nome')->paginate(8);
 		return view('escritores.index', ['escritores'=>$escritores]);
 	}
 
@@ -19,14 +19,20 @@ class EscritoresController extends Controller
 
     public function store(EscritorRequest $request) {
         $novo_escritor = $request->all();
+        $novo_escritor['user_id'] = auth()->user()->id;
         Escritor::create($novo_escritor);
         return redirect()->route('escritores');
     }
 
     public function destroy($id) {
         try {
-		    Escritor::find($id)->delete();
-			$ret = array('status'=>200, 'msg'=>"null");
+            $escritor = Escritor::find($id);
+            if ($escritor->user_id == auth()->user()->id) {
+                $escritor->delete();
+                $ret = array('status'=>200, 'msg'=>"null");
+            } else {
+                $ret = array('status'=>500, 'msg'=>'Not owner of data');
+            }
 		} catch (\Illuminate\Database\QueryException $e) {
 			$ret = array('status'=>500, 'msg'=>$e->getMessage());
 		}
@@ -38,11 +44,19 @@ class EscritoresController extends Controller
 
     public function edit($id) {
         $escritor = Escritor::find($id);
-        return view('escritores.edit', compact('escritor'));
+        if ($escritor->user_id == auth()->user()->id) {
+            return view('escritores.edit', compact('escritor'));
+        } else {
+            return redirect()->route('escritores');
+        }
     }
 
     public function update(EscritorRequest $request, $id) {
-        Escritor::find($id)->update($request->all());
+        $escritor = Escritor::find($id);
+        if ($escritor->user_id == auth()->user()->id) {
+            $escritor->update($request->all());
+        }
+
         return redirect()->route('escritores');
     }
 }

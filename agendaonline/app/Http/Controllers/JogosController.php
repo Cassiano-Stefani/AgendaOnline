@@ -9,7 +9,7 @@ use App\Http\Requests\JogoRequest;
 class JogosController extends Controller
 {
     public function index() {
-		$jogos = Jogo::orderBy('nome')->paginate(8);
+		$jogos = Jogo::where('user_id', auth()->user()->id)->orderBy('nome')->paginate(8);
 		return view('jogos.index', ['jogos'=>$jogos]);
 	}
 
@@ -19,14 +19,20 @@ class JogosController extends Controller
 
     public function store(JogoRequest $request) {
         $novo_jogo = $request->all();
+        $novo_jogo['user_id'] = auth()->user()->id;
         Jogo::create($novo_jogo);
         return redirect()->route('jogos');
     }
 
     public function destroy($id) {
         try {
-		    Jogo::find($id)->delete();
-			$ret = array('status'=>200, 'msg'=>"null");
+            $jogo = Jogo::find($id);
+            if ($jogo->user_id == auth()->user()->id) {
+                $jogo->delete();
+                $ret = array('status'=>200, 'msg'=>"null");
+            } else {
+                $ret = array('status'=>500, 'msg'=>'Not owner of data');
+            }
 		} catch (\Illuminate\Database\QueryException $e) {
 			$ret = array('status'=>500, 'msg'=>$e->getMessage());
 		}
@@ -38,11 +44,19 @@ class JogosController extends Controller
 
     public function edit($id) {
         $jogo = Jogo::find($id);
-        return view('jogos.edit', compact('jogo'));
+        if ($jogo->user_id == auth()->user()->id) {
+            return view('jogos.edit', compact('jogo'));
+        } else {
+            return redirect()->route('jogos');
+        }
     }
 
     public function update(JogoRequest $request, $id) {
-        Jogo::find($id)->update($request->all());
+        $jogo = Jogo::find($id);
+        if ($jogo->user_id == auth()->user()->id) {
+            $jogo->update($request->all());
+        }
+
         return redirect()->route('jogos');
     }
 }

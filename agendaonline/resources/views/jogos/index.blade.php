@@ -5,16 +5,14 @@
     <table class="table table-stripe table-bordered table-hover">
         <thead>
             <th>Título</th>
-            <th>Ano de Lançamento</th>
-            <th>Gênero</th>
+            <th>Progresso</th>
             <th>Ações</th>
         </thead>
         <tbody>
             @foreach($jogos as $jogo)
                 <tr>
                     <td>{{ $jogo->nome }} </td>
-                    <td>{{ Carbon\Carbon::parse($jogo->ano_lancamento)->format('d/m/Y') }} </td>
-                    <td>{{ $jogo->genero }} </td>
+                    <td>{{ $jogo->completado }} </td>
                     <td>
                         <a href="{{ route('jogos.edit', ['id'=>$jogo->id]) }}"    class="btn-sm btn-success">Editar</a>
                         <a href="#" onclick="return ConfirmaExclusao({{ $jogo->id }})" class="btn-sm btn-danger">Remover</a>

@@ -20,7 +20,7 @@ class CreateLivrosTable extends Migration
             $table->string('genero', 100)->nullable();
             $table->integer('escritor_id')->unsigned()->nullable();
             //$table->foreign('escritor_id')->references('id')->on('escritores');
-            $table->integer('pagina_parada')->nullable();
+            $table->string('pagina_parada',50)->nullable();
             $table->longText('dados_extra')->nullable();
             $table->timestamps();
         });

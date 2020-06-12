@@ -10,7 +10,7 @@ use App\http\Requests\FilmeRequest;
 class FilmesController extends Controller
 {
     public function index() {
-		$filmes = Filme::orderBy('nome')->paginate(8);
+		$filmes = Filme::where('user_id', auth()->user()->id)->orderBy('nome')->paginate(8);
 		return view('filmes.index', ['filmes'=>$filmes]);
 	}
 
@@ -19,8 +19,10 @@ class FilmesController extends Controller
     }
 
     public function store(FilmeRequest $request) {
+        $auid = auth()->user()->id;
         $filme = Filme::create([
                         'nome' => $request->get('nome'),
+                        'user_id' => $auid,
                         'ano_lancamento' => $request->get('ano_lancamento'),
                         'genero' => $request->get('genero'),
                         'imdb' => $request->get('imdb'),
@@ -28,8 +30,13 @@ class FilmesController extends Controller
                     );
 
         $atores = $request->atores;
-        foreach($atores as $a => $value) {
-            $filme->atores()->attach(Ator::find($value));
+        if ($atores != null) {
+            foreach($atores as $a => $value) {
+                $ator = Ator::find($value);
+                if ($ator->user_id == $auid) {
+                    $filme->atores()->attach($ator);
+                }
+            }
         }
 
         return redirect()->route('filmes');
@@ -37,7 +44,13 @@ class FilmesController extends Controller
 
     public function destroy($id) {
         try {
-		    Filme::find($id)->delete();
+            $filme = Filme::find($id);
+            if ($filme->user_id == auth()->user()->id) {
+                $filme->delete();
+                $ret = array('status'=>200, 'msg'=>"null");
+            } else {
+                $ret = array('status'=>500, 'msg'=>'Not owner of data');
+            }
 			$ret = array('status'=>200, 'msg'=>"null");
 		} catch (\Illuminate\Database\QueryException $e) {
 			$ret = array('status'=>500, 'msg'=>$e->getMessage());
@@ -50,28 +63,37 @@ class FilmesController extends Controller
 
     public function edit($id) {
         $filme = Filme::find($id);
-        return view('filmes.edit', compact('filme'));
+        if ($filme->user_id == auth()->user()->id) {
+            return view('filmes.edit', compact('filme'));
+        } else {
+            return redirect()->route('filmes');
+        }
     }
 
     public function update(FilmeRequest $request, $id) {
+        $auid = auth()->user()->id;
         $filme = Filme::find($id);
+        if ($filme->user_id == $auid) {
+            foreach ($filme->atores as $ator) {
+                $filme->atores()->detach($ator);
+            }
 
-        foreach ($filme->atores as $ator) {
-            $filme->atores()->detach($ator);
-        }
+            $filme->update([
+                'nome' => $request->get('nome'),
+                'ano_lancamento' => $request->get('ano_lancamento'),
+                'genero' => $request->get('genero'),
+                'imdb' => $request->get('imdb'),
+                'dados_extra' => $request->get('dados_extra')]
+            );
 
-        $filme->update([
-            'nome' => $request->get('nome'),
-            'ano_lancamento' => $request->get('ano_lancamento'),
-            'genero' => $request->get('genero'),
-            'imdb' => $request->get('imdb'),
-            'dados_extra' => $request->get('dados_extra')]
-        );
-
-        $atores = $request->atores;
-        if ($atores != null) {
-            foreach($atores as $a => $value) {
-                $filme->atores()->attach(Ator::find($value));
+            $atores = $request->atores;
+            if ($atores != null) {
+                foreach($atores as $a => $value) {
+                    $ator = Ator::find($value);
+                    if ($ator->user_id == $auid) {
+                        $filme->atores()->attach($ator);
+                    }
+                }
             }
         }
 

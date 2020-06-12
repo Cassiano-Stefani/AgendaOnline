@@ -19,7 +19,7 @@ class CreateJogosTable extends Migration
             $table->string('nome', 100);
             $table->date('ano_lancamento')->nullable();
             $table->string('genero')->nullable();
-            $table->float('completado', 8, 2)->nullable();
+            $table->string('completado', 100)->nullable();
             $table->longText('dados_extra')->nullable();
             $table->timestamps();
         });

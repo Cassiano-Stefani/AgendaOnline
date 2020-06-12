@@ -5,12 +5,14 @@
     <table class="table table-stripe table-bordered table-hover">
         <thead>
             <th>Título</th>
+            <th>Progresso</th>
             <th>Ações</th>
         </thead>
         <tbody>
             @foreach($livros as $livro)
                 <tr>
                     <td>{{ $livro->nome }} </td>
+                    <td>{{ $livro->pagina_parada }} </td>
                     <td>
                         <a href="{{ route('livros.edit', ['id'=>$livro->id]) }}"    class="btn-sm btn-success">Editar</a>
                         <a href="#" onclick="return ConfirmaExclusao({{ $livro->id }})" class="btn-sm btn-danger">Remover</a>

@@ -8,8 +8,17 @@ use App\Http\Requests\EscritorRequest;
 
 class EscritoresController extends Controller
 {
-    public function index() {
-		$escritores = Escritor::where('user_id', auth()->user()->id)->orderBy('nome')->paginate(8);
+    public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null)
+            $escritores = Escritor::where('user_id', auth()->user()->id)->orderBy('nome')->paginate(8);
+        else
+            $escritores = Escritor::where('user_id', auth()->user()->id)
+                          ->where('nome', 'like', '%'.$filtragem.'%')
+                          ->orderBy('nome')
+                          ->paginate(8)
+                          ->setPath(route('escritores'))
+                          ->appends('desc_filtro', $filtragem);
 		return view('escritores.index', ['escritores'=>$escritores]);
 	}
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix'=>'atores', 'where'=>['id'=>'[0-9]+']], function () {
-        Route::get ('',             ['as'=>'atores',         'uses'=>'AtoresController@index'  ]);
+        Route::any ('',             ['as'=>'atores',         'uses'=>'AtoresController@index'  ]);
         Route::get ('create',       ['as'=>'atores.create',  'uses'=>'AtoresController@create' ]);
         Route::get ('{id}/destroy', ['as'=>'atores.destroy', 'uses'=>'AtoresController@destroy']);
         Route::get ('{id}/edit',    ['as'=>'atores.edit',    'uses'=>'AtoresController@edit'   ]);
@@ -13,7 +13,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix'=>'jogos', 'where'=>['id'=>'[0-9]+']], function () {
-        Route::get ('',             ['as'=>'jogos',         'uses'=>'JogosController@index'  ]);
+        Route::any ('',             ['as'=>'jogos',         'uses'=>'JogosController@index'  ]);
         Route::get ('create',       ['as'=>'jogos.create',  'uses'=>'JogosController@create' ]);
         Route::get ('{id}/destroy', ['as'=>'jogos.destroy', 'uses'=>'JogosController@destroy']);
         Route::get ('{id}/edit',    ['as'=>'jogos.edit',    'uses'=>'JogosController@edit'   ]);
@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix'=>'escritores', 'where'=>['id'=>'[0-9]+']], function () {
-        Route::get ('',             ['as'=>'escritores',         'uses'=>'EscritoresController@index'  ]);
+        Route::any ('',             ['as'=>'escritores',         'uses'=>'EscritoresController@index'  ]);
         Route::get ('create',       ['as'=>'escritores.create',  'uses'=>'EscritoresController@create' ]);
         Route::get ('{id}/destroy', ['as'=>'escritores.destroy', 'uses'=>'EscritoresController@destroy']);
         Route::get ('{id}/edit',    ['as'=>'escritores.edit',    'uses'=>'EscritoresController@edit'   ]);
@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix'=>'livros', 'where'=>['id'=>'[0-9]+']], function () {
-        Route::get ('',             ['as'=>'livros',         'uses'=>'LivrosController@index'  ]);
+        Route::any ('',             ['as'=>'livros',         'uses'=>'LivrosController@index'  ]);
         Route::get ('create',       ['as'=>'livros.create',  'uses'=>'LivrosController@create' ]);
         Route::get ('{id}/destroy', ['as'=>'livros.destroy', 'uses'=>'LivrosController@destroy']);
         Route::get ('{id}/edit',    ['as'=>'livros.edit',    'uses'=>'LivrosController@edit'   ]);
@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix'=>'filmes', 'where'=>['id'=>'[0-9]+']], function () {
-        Route::get ('',             ['as'=>'filmes',         'uses'=>'FilmesController@index'  ]);
+        Route::any ('',             ['as'=>'filmes',         'uses'=>'FilmesController@index'  ]);
         Route::get ('create',       ['as'=>'filmes.create',  'uses'=>'FilmesController@create' ]);
         Route::get ('{id}/destroy', ['as'=>'filmes.destroy', 'uses'=>'FilmesController@destroy']);
         Route::get ('{id}/edit',    ['as'=>'filmes.edit',    'uses'=>'FilmesController@edit'   ]);
@@ -49,17 +49,19 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix'=>'series', 'where'=>['id'=>'[0-9]+']], function () {
-        Route::get ('',             ['as'=>'series',         'uses'=>'SeriesController@index'  ]);
+        Route::any ('',             ['as'=>'series',         'uses'=>'SeriesController@index'  ]);
         Route::get ('create',       ['as'=>'series.create',  'uses'=>'SeriesController@create' ]);
         Route::get ('{id}/destroy', ['as'=>'series.destroy', 'uses'=>'SeriesController@destroy']);
         Route::get ('{id}/edit',    ['as'=>'series.edit',    'uses'=>'SeriesController@edit'   ]);
         Route::put ('{id}/update',  ['as'=>'series.update',  'uses'=>'SeriesController@update' ]);
         Route::post('store',        ['as'=>'series.store',   'uses'=>'SeriesController@store'  ]);
     });
+
+    Route::get('/searchtmdb', 'TmdbSearchController@search')->name('searchtmdb');
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
 });
 
 Auth::routes();

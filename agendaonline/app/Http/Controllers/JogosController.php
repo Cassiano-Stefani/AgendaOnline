@@ -8,8 +8,17 @@ use App\Http\Requests\JogoRequest;
 
 class JogosController extends Controller
 {
-    public function index() {
-		$jogos = Jogo::where('user_id', auth()->user()->id)->orderBy('nome')->paginate(8);
+    public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null)
+            $jogos = Jogo::where('user_id', auth()->user()->id)->orderBy('nome')->paginate(8);
+        else
+            $jogos = Jogo::where('user_id', auth()->user()->id)
+                          ->where('nome', 'like', '%'.$filtragem.'%')
+                          ->orderBy('nome')
+                          ->paginate(8)
+                          ->setPath(route('jogos'))
+                          ->appends('desc_filtro', $filtragem);
 		return view('jogos.index', ['jogos'=>$jogos]);
 	}
 

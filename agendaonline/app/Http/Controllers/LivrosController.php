@@ -8,8 +8,17 @@ use App\Http\Requests\LivroRequest;
 
 class LivrosController extends Controller
 {
-    public function index() {
-		$livros = Livro::where('user_id', auth()->user()->id)->orderBy('nome')->paginate(8);
+    public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null)
+            $livros = Livro::where('user_id', auth()->user()->id)->orderBy('nome')->paginate(8);
+        else
+            $livros = Livro::where('user_id', auth()->user()->id)
+                          ->where('nome', 'like', '%'.$filtragem.'%')
+                          ->orderBy('nome')
+                          ->paginate(8)
+                          ->setPath(route('livros'))
+                          ->appends('desc_filtro', $filtragem);
 		return view('livros.index', ['livros'=>$livros]);
 	}
 

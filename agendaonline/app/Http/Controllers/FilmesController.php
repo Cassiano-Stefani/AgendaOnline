@@ -9,8 +9,17 @@ use App\http\Requests\FilmeRequest;
 
 class FilmesController extends Controller
 {
-    public function index() {
-		$filmes = Filme::where('user_id', auth()->user()->id)->orderBy('nome')->paginate(8);
+    public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null)
+            $filmes = Filme::where('user_id', auth()->user()->id)->orderBy('nome')->paginate(8);
+        else
+            $filmes = Filme::where('user_id', auth()->user()->id)
+                          ->where('nome', 'like', '%'.$filtragem.'%')
+                          ->orderBy('nome')
+                          ->paginate(8)
+                          ->setPath(route('filmes'))
+                          ->appends('desc_filtro', $filtragem);
 		return view('filmes.index', ['filmes'=>$filmes]);
 	}
 

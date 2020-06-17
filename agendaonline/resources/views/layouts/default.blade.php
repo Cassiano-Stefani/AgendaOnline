@@ -35,4 +35,6 @@
             })
         }
     </script>
+
+    @yield ('extrajs')
 @stop

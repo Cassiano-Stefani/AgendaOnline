@@ -215,11 +215,6 @@ return [
             'icon' => 'fas fa-fw fa-users',
         ],
         [
-            'text' => 'Jogos',
-            'url'  => 'jogos',
-            'icon' => 'fas fa-fw fa-gamepad',
-        ],
-        [
             'text' => 'Escritores',
             'url'  => 'escritores',
             'icon' => 'fas fa-fw fa-users',
@@ -238,6 +233,11 @@ return [
             'text' => 'Séries',
             'url'  => 'series',
             'icon' => 'fas fa-fw fa-film',
+        ],
+        [
+            'text' => 'Jogos',
+            'url'  => 'jogos',
+            'icon' => 'fas fa-fw fa-gamepad',
         ],
         // [
         //     'text' => 'search',

@@ -18,7 +18,8 @@ class CreateFilmesTable extends Migration
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->string('nome', 100);
             $table->date('ano_lancamento')->nullable();
-            $table->string('genero')->nullable();
+            //$table->string('genero')->nullable();
+            $table->string('poster')->nullable();
             $table->float('imdb', 8, 2)->nullable(); // deve ser buscado de api de terceiros
             $table->longText('dados_extra')->nullable();
             $table->timestamps();

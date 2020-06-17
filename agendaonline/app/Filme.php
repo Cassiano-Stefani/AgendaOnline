@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Filme extends Model
 {
     protected $table = 'filmes';
-    protected $fillable = ['nome', 'user_id', 'ano_lancamento', 'genero', 'imdb', 'dados_extra'];
+    protected $fillable = ['nome', 'user_id', 'ano_lancamento', 'poster', 'imdb', 'dados_extra'];
 
     public function atores() {
         return $this->belongsToMany(Ator::class);

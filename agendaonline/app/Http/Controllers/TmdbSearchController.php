@@ -15,7 +15,7 @@ class TmdbSearchController extends Controller
             if ($resultCollection != null) {
                 $i = 0;
                 foreach ($resultCollection->toArray() as $movie) {
-                    $resp[$i] = array('title'=>$movie->getTitle(),'date'=>$movie->getReleaseDate(), 'poster'=>$movie->getPosterPath(), 'score'=>$movie->getVoteAverage());
+                    $resp[$i] = array('title'=>$movie->getTitle(),'date'=>$movie->getReleaseDate()->format('Y-m-d'), 'poster'=>$movie->getPosterPath(), 'score'=>$movie->getVoteAverage());
                     $i++;
                 }
             }

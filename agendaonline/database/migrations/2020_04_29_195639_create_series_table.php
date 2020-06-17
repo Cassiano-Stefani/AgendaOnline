@@ -17,7 +17,8 @@ class CreateSeriesTable extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->string('nome', 100);
-            $table->string('genero')->nullable();
+            //$table->string('genero')->nullable();
+            $table->string('poster')->nullable();
             $table->float('imdb', 8, 2)->nullable(); // deve ser buscado de api de terceiros
             $table->string('episodio_parado', 50)->nullable();
             $table->string('temporada_parada', 50)->nullable();

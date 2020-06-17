@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Serie extends Model
 {
     protected $table = 'series';
-    protected $fillable = ['nome', 'user_id','genero','imdb','episodio_parado','temporada_parada','dados_extra'];
+    protected $fillable = ['nome', 'user_id','poster','imdb','episodio_parado','temporada_parada','dados_extra'];
 
     public function atores() {
         return $this->belongsToMany(Ator::class);

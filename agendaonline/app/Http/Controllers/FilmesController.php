@@ -12,12 +12,12 @@ class FilmesController extends Controller
     public function index(Request $filtro) {
 		$filtragem = $filtro->get('desc_filtro');
         if ($filtragem == null)
-            $filmes = Filme::where('user_id', auth()->user()->id)->orderBy('nome')->paginate(8);
+            $filmes = Filme::where('user_id', auth()->user()->id)->orderBy('nome')->paginate(10);
         else
             $filmes = Filme::where('user_id', auth()->user()->id)
                           ->where('nome', 'like', '%'.$filtragem.'%')
                           ->orderBy('nome')
-                          ->paginate(8)
+                          ->paginate(10)
                           ->setPath(route('filmes'))
                           ->appends('desc_filtro', $filtragem);
 		return view('filmes.index', ['filmes'=>$filmes]);
@@ -33,7 +33,7 @@ class FilmesController extends Controller
                         'nome' => $request->get('nome'),
                         'user_id' => $auid,
                         'ano_lancamento' => $request->get('ano_lancamento'),
-                        'genero' => $request->get('genero'),
+                        'poster' => $request->get('poster'),
                         'imdb' => $request->get('imdb'),
                         'dados_extra' => $request->get('dados_extra')]
                     );
@@ -90,7 +90,7 @@ class FilmesController extends Controller
             $filme->update([
                 'nome' => $request->get('nome'),
                 'ano_lancamento' => $request->get('ano_lancamento'),
-                'genero' => $request->get('genero'),
+                'poster' => $request->get('poster'),
                 'imdb' => $request->get('imdb'),
                 'dados_extra' => $request->get('dados_extra')]
             );

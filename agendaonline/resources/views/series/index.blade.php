@@ -32,10 +32,10 @@
 @stop
 
 @section('content')
-    <h1 style="display: inline-block;">Filmes</h1>
-    <a href="{{ route('filmes.create', []) }}" class="btn-sm btn-info" style="font-size: 21px; float: right; bottom: -5px; position: relative;">Adicionar</a>
+    <h1 style="display: inline-block;">Séries</h1>
+    <a href="{{ route('series.create', []) }}" class="btn-sm btn-info" style="font-size: 21px; float: right; bottom: -5px; position: relative;">Adicionar</a>
 
-    {!! Form::open(['name'=>'form_name', 'route'=>'filmes']) !!}
+    {!! Form::open(['name'=>'form_name', 'route'=>'series']) !!}
         <div calss="sidebar-form">
             <div class="input-group">
                 <input type="text" name="desc_filtro" class="form-control" style="width:80% !important;" placeholder="Pesquisa...">
@@ -47,20 +47,20 @@
     {!! Form::close() !!}
     <br>
 
-    @foreach ($filmes as $filme)
-        <div class="movie" onclick="window.location = '{{ route('filmes.edit', ['id'=>$filme->id]) }}';">
+    @foreach ($series as $serie)
+        <div class="movie" onclick="window.location = '{{ route('series.edit', ['id'=>$serie->id]) }}';">
             <div class="movieHeader">
-                <h5 class="resultTitle" data-toggle="tooltip" title="{!! $filme->nome !!}">{!! $filme->nome !!}</h5>
+                <h5 class="resultTitle" data-toggle="tooltip" title="{!! $serie->nome !!}">{!! $serie->nome !!}</h5>
                 <div style="margin-left: 24px;">
-                    <a href="#" onclick="return ConfirmaExclusao({{ $filme->id }})" class="delMov btn-sm btn-danger"><i class="fas fa-times"></i></a>
+                    <a href="#" onclick="return ConfirmaExclusao({{ $serie->id }})" class="delMov btn-sm btn-danger"><i class="fas fa-times"></i></a>
                 </div>
             </div>
             <hr style="margin: 0px -10px 10px -10px;"/>
-            <img src="{!! ($filme->poster == null || $filme->poster == "noimg" ? asset('images/noimg_w300_h450.png') : "https://image.tmdb.org/t/p/w300_and_h450_bestv2/".$filme->poster) !!}" style="width: 100%;"></img>
+            <img src="{!! ($serie->poster == null || $serie->poster == "noimg" ? asset('images/noimg_w300_h450.png') : "https://image.tmdb.org/t/p/w300_and_h450_bestv2/".$serie->poster) !!}" style="width: 100%;"></img>
         </div>
     @endforeach
 
-    {{ $filmes->links() }}
+    {{ $series->links() }}
 @stop
 
 @section ('extrajs')
@@ -74,5 +74,5 @@
 @stop
 
 @section('table-delete')
-"filmes"
+"series"
 @stop

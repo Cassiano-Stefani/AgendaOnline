@@ -13,7 +13,7 @@ class Livro extends Model
         return $this->belongsTo("App\Escritor");
     }
 
-    public function users() {
+    public function user() {
         return $this->belongsTo('App\User');
     }
 }

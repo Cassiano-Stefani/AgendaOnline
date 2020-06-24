@@ -26,7 +26,7 @@
             {!! Form::label('escritor_id', 'Escritor:') !!}
             {!! Form::select('escritor_id',
                             \App\Escritor::where('user_id', auth()->user()->id)->orderBy('nome')->pluck('nome', 'id')->toArray(),
-                            $livro->escritor_id, ['class'=>'form-control']) !!}
+                            $livro->escritor_id, ['class'=>'form-control', "placeholder"=>"Selecione um escritor"]) !!}
         </div>
 
         <div class="form-group">
@@ -40,8 +40,8 @@
         </div>
 
         <div class="form-group">
-            {!! Form::submit('Editar Livro', ['class'=>'btn btn-primary']) !!}
-            {!! Form::reset('Limpar', ['class'=>'btn btn-default']) !!}
+            {!! Form::submit('Pronto', ['class'=>'btn btn-primary']) !!}
+            {!! Form::reset('Redefinir', ['class'=>'btn btn-default']) !!}
         </div>
     {!! Form::close() !!}
 @stop

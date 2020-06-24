@@ -38,8 +38,8 @@
         </div>
 
         <div class="form-group">
-            {!! Form::submit('Editar Jogo', ['class'=>'btn btn-primary']) !!}
-            {!! Form::reset('Limpar', ['class'=>'btn btn-default']) !!}
+            {!! Form::submit('Pronto', ['class'=>'btn btn-primary']) !!}
+            {!! Form::reset('Redefinir', ['class'=>'btn btn-default']) !!}
         </div>
     {!! Form::close() !!}
 @stop

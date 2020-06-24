@@ -45,7 +45,7 @@
 @stop
 
 @section('content')
-    <h3>Editando Filme: {{ $filme->nome }}</h3>
+    <h3>Editando Série: {{ $serie->nome }}</h3>
 
     @if($errors->any())
         <ul> class="alert alert-danger">
@@ -55,11 +55,11 @@
         </ul>
     @endif
 
-    {!! Form::open(['route'=>["filmes.update", 'id'=>$filme->id], 'method' => 'put']) !!}
+    {!! Form::open(['route'=>["series.update", 'id'=>$serie->id], 'method' => 'put']) !!}
         <div class="sidebar-form">
             {!! Form::label('nome', 'Título:') !!}
             <div class="input-group">
-                {!! Form::text('nome', $filme->nome, ['id'=>'movTitle', 'class'=>'form-control', 'required', 'style'=>'width:80%; margin-right:10px !important;']) !!}
+                {!! Form::text('nome', $serie->nome, ['id'=>'movTitle', 'class'=>'form-control', 'required', 'style'=>'width:80%; margin-right:10px !important;']) !!}
                 {!! Form::button('Busca TMDB', ['id'=>'searchtmdb', 'class'=>'btn btn-primary']) !!}
             </div>
         </div>
@@ -81,16 +81,26 @@
 
         <hr />
 
-        {!! Form::text('poster', $filme->poster, ['id'=>'movPoster', 'class'=>'hide']) !!}
+        {!! Form::text('poster', $serie->poster, ['id'=>'movPoster', 'class'=>'hide']) !!}
 
         <div class="form-group">
             {!! Form::label('ano_lancamento', 'Ano de Lançamento:') !!}
-            {!! Form::date('ano_lancamento', $filme->ano_lancamento, ['id'=>'movDate', 'class'=>'form-control']) !!}
+            {!! Form::date('ano_lancamento', $serie->ano_lancamento, ['id'=>'movDate', 'class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
             {!! Form::label('imdb', 'Nota:') !!}
-            {!! Form::number('imdb', $filme->imdb, ['id'=>'movScore', 'class'=>'form-control', 'step'=>'0.001']) !!}
+            {!! Form::number('imdb', $serie->imdb, ['id'=>'movScore', 'class'=>'form-control', 'step'=>'0.001']) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('temporada_parada', 'Temporada parada:') !!}
+            {!! Form::number('temporada_parada', $serie->temporada_parada, ['class'=>'form-control']) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('episodio_parado', 'Episódio parado:') !!}
+            {!! Form::number('episodio_parado', $serie->episodio_parado, ['class'=>'form-control']) !!}
         </div>
 
         <hr />
@@ -106,7 +116,7 @@
 
         <div class="form-group">
             {!! Form::label('dados_extra', 'Observações:') !!}
-            {!! Form::textarea('dados_extra', $filme->dados_extra, ['class'=>'form-control']) !!}
+            {!! Form::textarea('dados_extra', $serie->dados_extra, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
@@ -132,7 +142,7 @@
                 $(this).parent('div').remove();
             });
 
-            @foreach($filme->atores as $ator)
+            @foreach($serie->atores as $ator)
                 $(wrapper).append('<div class="input-group" style="margin-bottom: 10px;">{!! Form::select("atores[]", \App\Ator::where("user_id", auth()->user()->id)->orderBy("nome")->pluck("nome","id")->toArray(), $ator->id, ["class"=>"form-control", "required", "placeholder"=>"Selecione um ator", "style"=>"margin-right: 10px;"]) !!}<button type="button" class="remove_field btn btn-danger btn-circle"><i class="fa fa-times"></button></div>');
             @endforeach
 
@@ -142,7 +152,7 @@
                 if (title.trim()) {
                     $.ajax({url: "/searchtmdb",
                     type: "GET",
-                    data: { title: title},
+                    data: { title: title, serie: true},
                     success: function(result){
                         if (result && result.length > 0) {
                             $("#tmdbResults").removeClass("hide");
@@ -167,7 +177,7 @@
                                                            '</div>');
                             }
                         } else {
-                            alert("Nenhum filme encontrado com este título");
+                            alert("Nenhuma série encontrada com este título");
                         }
                     },
                     error: function() {

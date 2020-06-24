@@ -59,7 +59,7 @@
         <div class="sidebar-form">
             {!! Form::label('nome', 'Título:') !!}
             <div class="input-group">
-                {!! Form::text('nome', null, ['id'=>'movTitle', 'class'=>'form-control', 'required', 'style'=>'width:80%; margin-right:10px; !important;']) !!}
+                {!! Form::text('nome', null, ['id'=>'movTitle', 'class'=>'form-control', 'required', 'style'=>'width:80%; margin-right:10px !important;']) !!}
                 {!! Form::button('Busca TMDB', ['id'=>'searchtmdb', 'class'=>'btn btn-primary']) !!}
             </div>
         </div>
@@ -123,7 +123,7 @@
 			var add_button = $(".add_field_button");
 
             $(add_button).click(function(e) {
-                var newField = '<div><div style="width:94%; float:left" id="ator">{!! Form::select("atores[]", \App\Ator::where("user_id", auth()->user()->id)->orderBy("nome")->pluck("nome","id")->toArray(), null, ["class"=>"form-control", "required", "placeholder"=>"Selecione um ator"]) !!}</div><button type="button" class="remove_field btn btn-danger btn-circle"><i class="fa fa-times"></button></div>';
+                var newField = '<div class="input-group" style="margin-bottom: 10px;">{!! Form::select("atores[]", \App\Ator::where("user_id", auth()->user()->id)->orderBy("nome")->pluck("nome","id")->toArray(), null, ["class"=>"form-control", "required", "placeholder"=>"Selecione um ator", "style"=>"margin-right: 10px;"]) !!}<button type="button" class="remove_field btn btn-danger btn-circle"><i class="fa fa-times"></button></div>';
 			    $(wrapper).append(newField);
             });
 

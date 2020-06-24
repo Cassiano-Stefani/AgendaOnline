@@ -26,7 +26,7 @@
             {!! Form::label('escritor_id', 'Escritor:') !!}
             {!! Form::select('escritor_id',
                              \App\Escritor::where('user_id', auth()->user()->id)->orderBy('nome')->pluck('nome', 'id')->toArray(),
-                             null, ['class'=>'form-control']) !!}
+                             null, ['class'=>'form-control', "placeholder"=>"Selecione um escritor"]) !!}
         </div>
 
         <div class="form-group">

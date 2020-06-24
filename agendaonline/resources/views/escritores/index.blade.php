@@ -1,7 +1,8 @@
 @extends('layouts.default')
 
 @section('content')
-    <h1>Escritores</h1>
+    <h1 style="display: inline-block;">Escritores</h1>
+    <a href="{{ route('escritores.create', []) }}" class="btn-sm btn-info" style="font-size: 21px; float: right; bottom: -5px; position: relative;">Adicionar</a>
 
     {!! Form::open(['name'=>'form_name', 'route'=>'escritores']) !!}
         <div calss="sidebar-form">
@@ -34,8 +35,6 @@
     </table>
 
     {{ $escritores->links() }}
-
-    <a href="{{ route('escritores.create', []) }}" class="btn-sm btn-info">Adicionar</a>
 @stop
 
 @section('table-delete')
